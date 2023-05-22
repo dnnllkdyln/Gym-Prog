@@ -1,5 +1,3 @@
-using System;
-
 namespace GymProgram
 {
     class Program
@@ -80,7 +78,7 @@ namespace GymProgram
                                 break;
                         }
 
-                        if (userInput == "0") 
+                        if (userInput == "0")
                         {
                             break;
                         }
@@ -91,7 +89,7 @@ namespace GymProgram
                     Console.WriteLine("-----------------------------------------");
                     Console.WriteLine("Invalid GymPass, Please try again!");
                     userInput = Console.ReadLine();
-                } 
+                }
             }
 
             Console.WriteLine("");
