@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace GymProgram
 {
     class Program
@@ -26,48 +29,87 @@ namespace GymProgram
                         Console.WriteLine("Enter M (Leg)");
                         Console.WriteLine("Enter 0 to exit...");
 
-
                         Console.WriteLine("Choose your option:");
                         userInput = Console.ReadLine();
 
                         switch (userInput)
                         {
                             case "G":
-                                Console.WriteLine("Push Day: ");
-                                Console.WriteLine("1. Flat Dumbbell Bench Press");
-                                Console.WriteLine("2. Incline Bench Press");
-                                Console.WriteLine("3. Dips");
-                                Console.WriteLine("4. Side Lateral Raises");
-                                Console.WriteLine("5. Triceps Pushdown");
-                                Console.WriteLine("6. Seated Triceps Extension");
-                                Console.WriteLine("7. Skullcrushers");
-                                Console.WriteLine("8. Dumbbell Shoulder Press");
+                                Console.WriteLine("Push Day: (3 Sets - 12 Reps)");
+
+                                List<string> pushWorkouts = new List<string>
+                                {
+                                    "Flat Dumbbell Bench Press",
+                                    "Incline Bench Press",
+                                    "Dips",
+                                    "Side Lateral Raises",
+                                    "Triceps Pushdown",
+                                    "Seated Triceps Extension",
+                                    "Skullcrushers",
+                                    "Dumbbell Shoulder Press"
+                                };
+
+                                DisplayWorkouts(pushWorkouts);
+
+                                Console.Write("Enter the number of sets: ");
+                                int setsG = Convert.ToInt32(Console.ReadLine());
+                                Console.Write("Enter the number of reps: ");
+                                int repsG = Convert.ToInt32(Console.ReadLine());
+
+                                Console.WriteLine("");
+                                Console.WriteLine($"You performed {repsG} reps of {setsG} sets for each workout.");
                                 break;
 
                             case "Y":
-                                Console.WriteLine("Pull Day: ");
-                                Console.WriteLine("1. Pull Ups");
-                                Console.WriteLine("2. Deadlifts");
-                                Console.WriteLine("3. Lat Pulldowns");
-                                Console.WriteLine("4. Barbell Rows");
-                                Console.WriteLine("5. Dumbbell Rows");
-                                Console.WriteLine("6. Pullovers");
-                                Console.WriteLine("7. Dumbbell Shrugs");
-                                Console.WriteLine("8. Dumbbell Preacher Curls");
+                                Console.WriteLine("Pull Day: (3 Sets - 12 Reps)");
+
+                                List<string> pullWorkouts = new List<string>
+                                {
+                                    "Pull Ups",
+                                    "Deadlifts",
+                                    "Lat Pulldowns",
+                                    "Barbell Rows",
+                                    "Dumbbell Rows",
+                                    "Pullovers",
+                                    "Dumbbell Shrugs",
+                                    "Dumbbell Preacher Curls"
+                                };
+
+                                DisplayWorkouts(pullWorkouts);
+
+                                Console.Write("Enter the number of sets: ");
+                                int setsY = Convert.ToInt32(Console.ReadLine());
+                                Console.Write("Enter the number of reps: ");
+                                int repsY = Convert.ToInt32(Console.ReadLine());
+
                                 Console.WriteLine("");
+                                Console.WriteLine($"You performed {repsY} reps of {setsY} sets for each workout.");
                                 break;
 
                             case "M":
-                                Console.WriteLine("Leg Day: ");
-                                Console.WriteLine("1. Leg Press");
-                                Console.WriteLine("2. Hack Squats");
-                                Console.WriteLine("3. Leg Extension");
-                                Console.WriteLine("4. Leg Curl");
-                                Console.WriteLine("5. Lunges");
-                                Console.WriteLine("6. Standing Calf Raises");
-                                Console.WriteLine("7. Squats");
-                                Console.WriteLine("8. Deadlifts ");
+                                Console.WriteLine("Leg Day: (4 Sets - 15 Reps)");
+
+                                List<string> legWorkouts = new List<string>
+                                {
+                                    "Leg Press",
+                                    "Hack Squats",
+                                    "Leg Extension",
+                                    "Leg Curl",
+                                    "Lunges",
+                                    "Standing Calf Raises",
+                                    "Squats",
+                                    "Deadlifts"
+                                };
+
+                                DisplayWorkouts(legWorkouts);
+
+                                Console.Write("Enter the number of sets: ");
+                                int setsM = Convert.ToInt32(Console.ReadLine());
+                                Console.Write("Enter the number of reps: ");
+                                int repsM = Convert.ToInt32(Console.ReadLine());
+
                                 Console.WriteLine("");
+                                Console.WriteLine($"You performed {repsM} reps of {setsM} sets for each workout.");
                                 break;
 
                             case "0":
@@ -95,6 +137,15 @@ namespace GymProgram
             Console.WriteLine("");
             Console.WriteLine("Thanks for using GymProg...");
             Console.WriteLine("Hope we helped you in your workout program.");
+        }
+
+        static void DisplayWorkouts(List<string> workouts)
+        {
+            Console.WriteLine("Available workouts:");
+            for (int i = 0; i < workouts.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {workouts[i]}");
+            }
         }
     }
 }
