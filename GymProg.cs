@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GymProgram
-{
-    class Program
+    class GymProgram
     {
         static void Main()
         {
@@ -20,110 +18,30 @@ namespace GymProgram
 
                 if (result == "correct")
                 {
-                    while (true)
+                    GymProgram.Menu();
+                    userInput = Console.ReadLine();
+
+                    switch (userInput)
                     {
-                        Console.WriteLine("-----------------------------------------");
-                        Console.WriteLine("Here are the following programs: ");
-                        Console.WriteLine("Enter G (Push)");
-                        Console.WriteLine("Enter Y (Pull)");
-                        Console.WriteLine("Enter M (Leg)");
-                        Console.WriteLine("Enter 0 to exit...");
-
-                        Console.WriteLine("Choose your option:");
-                        userInput = Console.ReadLine();
-
-                        switch (userInput)
-                        {
-                            case "G":
-                                Console.WriteLine("Push Day: (3 Sets - 12 Reps)");
-
-                                List<string> pushWorkouts = new List<string>
-                                {
-                                    "Flat Dumbbell Bench Press",
-                                    "Incline Bench Press",
-                                    "Dips",
-                                    "Side Lateral Raises",
-                                    "Triceps Pushdown",
-                                    "Seated Triceps Extension",
-                                    "Skullcrushers",
-                                    "Dumbbell Shoulder Press"
-                                };
-
-                                DisplayWorkouts(pushWorkouts);
-
-                                Console.Write("Enter the number of sets: ");
-                                int setsG = Convert.ToInt32(Console.ReadLine());
-                                Console.Write("Enter the number of reps: ");
-                                int repsG = Convert.ToInt32(Console.ReadLine());
-
-                                Console.WriteLine("");
-                                Console.WriteLine($"You performed {repsG} reps of {setsG} sets for each workout.");
-                                break;
-
-                            case "Y":
-                                Console.WriteLine("Pull Day: (3 Sets - 12 Reps)");
-
-                                List<string> pullWorkouts = new List<string>
-                                {
-                                    "Pull Ups",
-                                    "Deadlifts",
-                                    "Lat Pulldowns",
-                                    "Barbell Rows",
-                                    "Dumbbell Rows",
-                                    "Pullovers",
-                                    "Dumbbell Shrugs",
-                                    "Dumbbell Preacher Curls"
-                                };
-
-                                DisplayWorkouts(pullWorkouts);
-
-                                Console.Write("Enter the number of sets: ");
-                                int setsY = Convert.ToInt32(Console.ReadLine());
-                                Console.Write("Enter the number of reps: ");
-                                int repsY = Convert.ToInt32(Console.ReadLine());
-
-                                Console.WriteLine("");
-                                Console.WriteLine($"You performed {repsY} reps of {setsY} sets for each workout.");
-                                break;
-
-                            case "M":
-                                Console.WriteLine("Leg Day: (4 Sets - 15 Reps)");
-
-                                List<string> legWorkouts = new List<string>
-                                {
-                                    "Leg Press",
-                                    "Hack Squats",
-                                    "Leg Extension",
-                                    "Leg Curl",
-                                    "Lunges",
-                                    "Standing Calf Raises",
-                                    "Squats",
-                                    "Deadlifts"
-                                };
-
-                                DisplayWorkouts(legWorkouts);
-
-                                Console.Write("Enter the number of sets: ");
-                                int setsM = Convert.ToInt32(Console.ReadLine());
-                                Console.Write("Enter the number of reps: ");
-                                int repsM = Convert.ToInt32(Console.ReadLine());
-
-                                Console.WriteLine("");
-                                Console.WriteLine($"You performed {repsM} reps of {setsM} sets for each workout.");
-                                break;
-
-                            case "0":
-                                Console.WriteLine("Exiting program...");
-                                break;
-                            default:
-                                Console.WriteLine("Invalid input!");
-                                break;
-                        }
-
-                        if (userInput == "0")
-                        {
+                        case "G":
+                            GymProgram.Program("Push", "3", "12");
                             break;
-                        }
+
+                        case "Y":
+                            GymProgram.Program("Pull", "3", "12");
+                            break;
+
+                        case "M":
+                            GymProgram.Program("Leg", "4", "15");
+                            break;
+
+                        case "0":
+                            Console.WriteLine("Exiting program...");
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid input!");
+                            break;
                     }
                 }
                 else
@@ -139,13 +57,83 @@ namespace GymProgram
             Console.WriteLine("Hope we helped you in your workout program.");
         }
 
-        static void DisplayWorkouts(List<string> workouts)
+        static void Menu()
         {
-            Console.WriteLine("Available workouts:");
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("Here are the following programs: ");
+            Console.WriteLine("Enter G (Push)");
+            Console.WriteLine("Enter Y (Pull)");
+            Console.WriteLine("Enter M (Leg)");
+            Console.WriteLine("Enter 0 to exit...");
+            Console.WriteLine("Choose your option:");
+        }
+
+        static void Program(string programType, string numSets, string numReps)
+        {
+            Console.WriteLine($"{programType} Day: ({numSets} Sets - {numReps} Reps)");
+
+            List<string> workouts = new List<string>();
+
+            if (programType == "Push")
+            {
+                workouts = new List<string>
+                {
+                    "Flat Dumbbell Bench Press",
+                    "Incline Bench Press",
+                    "Dips",
+                    "Side Lateral Raises",
+                    "Triceps Pushdown",
+                    "Seated Triceps Extension",
+                    "Skullcrushers",
+                    "Dumbbell Shoulder Press"
+                };
+            }
+            else if (programType == "Pull")
+            {
+                workouts = new List<string>
+                {
+                    "Pull Ups",
+                    "Deadlifts",
+                    "Lat Pulldowns",
+                    "Barbell Rows",
+                    "Dumbbell Rows",
+                    "Pullovers",
+                    "Dumbbell Shrugs",
+                    "Dumbbell Preacher Curls"
+                };
+            }
+            else if (programType == "Leg")
+            {
+                workouts = new List<string>
+                {
+                    "Leg Press",
+                    "Hack Squats",
+                    "Leg Extension",
+                    "Leg Curl",
+                    "Lunges",
+                    "Standing Calf Raises",
+                    "Squats",
+                    "Deadlifts"
+                };
+            }
+
+            Workouts(workouts);
+
+            Console.Write("Enter the number of sets: ");
+            int sets = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter the number of reps: ");
+            int reps = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("");
+            Console.WriteLine($"You performed {reps} reps of {sets} sets for each workout.");
+        }
+
+        static void Workouts(List<string> workouts)
+        {
+            Console.WriteLine(" ");
             for (int i = 0; i < workouts.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {workouts[i]}");
             }
         }
     }
-}
